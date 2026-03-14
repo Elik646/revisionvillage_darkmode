@@ -1,0 +1,38 @@
+/*
+ * Dark-mode overrides for Elik646's Revision Village.
+ *
+ * The app uses a permanently dark background (#111111) set on html/body/
+ * #root in the compiled stylesheet. The fixes below address three visual
+ * issues that arise because some Bootstrap utility classes still apply
+ * their own (light-theme) colour values.
+ */
+
+/*
+ * Bootstrap's .text-body utility hard-codes the body colour via CSS
+ * variables as #212529 (dark grey) with !important. This makes the
+ * subject-choice and topic-selection navigation links essentially
+ * invisible on the dark background.  We use a higher-specificity selector
+ * (body .text-body) plus !important to beat the Bootstrap rule.
+ */
+body .text-body {
+    color: #ffffff !important;
+}
+
+/*
+ * Question images have dark / grey content (diagrams, graphs, etc.).
+ * Adding a white background ensures they remain readable on the dark page.
+ */
+.math-box img {
+    background-color: #ffffff;
+    padding: 4px;
+    border-radius: 4px;
+}
+
+/*
+ * Tables inside question boxes are styled with solid black (#000) borders.
+ * A higher-specificity selector overrides that colour with a visible grey
+ * without needing !important.
+ */
+body .questionBox :is(table, th, td) {
+    border-color: #aaaaaa;
+}
